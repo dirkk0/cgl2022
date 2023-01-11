@@ -14,7 +14,7 @@ const s = (p5) => {
         // property
         this.posX = x
         this.posY = y
-        let color = p5.color(r, g, b)
+        this.color = p5.color(r, g, b)
 
         let incX = randomInt(5)
         let incY = randomInt(5)
@@ -36,7 +36,7 @@ const s = (p5) => {
                 this.posY = screenY
             }
 
-            p5.fill(color)
+            p5.fill(this.color)
             p5.ellipse(this.posX, this.posY, 20, 20);
 
         }
@@ -108,14 +108,14 @@ const s = (p5) => {
     // let thingArray = [new Thing(30, 40), new Thing(120, 110), new Thing(20, 110)]
     let thingArray = []
 
-    let ship = new Ship(50, 50)
+    let ship = new Ship(200, 200)
 
-    const numThings = 5
+    const numThings = 15
 
     for (let i = 0; i < numThings; i++) {
-        let r = randomColor()
-        let g = randomColor()
-        let b = randomColor()
+        let r = 255 // randomColor()
+        let g = 0 // randomColor()
+        let b = 0 // randomColor()
         const thing = new Thing(randomInt(50), randomInt(50), r, g, b)
         thingArray.push(thing)
     }
@@ -137,13 +137,16 @@ const s = (p5) => {
         for (let i = 0; i < thingArray.length; i++) {
             const thing = thingArray[i];
 
-            let d = 5
-            let c0 = thing.posX < ship.posX + d
-            let c1 = thing.posX > ship.posX - d
-            let c2 = thing.posY > ship.posY - d
-            let c3 = thing.posY < ship.posY + d
+            let d = 25
+            let c0 = thing.posX < (ship.posX + d)
+            let c1 = thing.posX > (ship.posX - d)
+            let c2 = thing.posY > (ship.posY - d)
+            let c3 = thing.posY < (ship.posY + d)
+
+            // console.log(c0, c1)
             if (c0 && c1 && c2 && c3) {
                 console.log("collide")
+                thing.color = p5.color(0,0,0)
             }
         }
     }
