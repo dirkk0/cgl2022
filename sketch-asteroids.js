@@ -110,7 +110,7 @@ const s = (p5) => {
 
     let ship = new Ship(200, 200)
 
-    const numThings = 15
+    const numThings = 5
 
     for (let i = 0; i < numThings; i++) {
         let r = 255 // randomColor()
