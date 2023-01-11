@@ -74,7 +74,6 @@ const s = (p5) => {
         }
 
         this.accX = function (a) {
-            console.log(this.incX, a)
             this.incX = this.incX + a
             if (this.incX > 5) {
                 this.incX = 5
@@ -82,7 +81,6 @@ const s = (p5) => {
             if (this.incX < -5) {
                 this.incX = -5
             }
-            console.log(this.incX)
         }
         this.accY = function (a) {
             this.incY = this.incY + a
@@ -138,7 +136,13 @@ const s = (p5) => {
         // collision
         for (let i = 0; i < thingArray.length; i++) {
             const thing = thingArray[i];
-            if (thing.posX == ship.posX && thing.posY == ship.posY) {
+
+            let d = 5
+            let c0 = thing.posX < ship.posX + d
+            let c1 = thing.posX > ship.posX - d
+            let c2 = thing.posY > ship.posY - d
+            let c3 = thing.posY < ship.posY + d
+            if (c0 && c1 && c2 && c3) {
                 console.log("collide")
             }
         }
