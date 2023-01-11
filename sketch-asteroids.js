@@ -2,25 +2,43 @@
 const s = (p5) => {
 
     // object definition
-    function Thing(x,y) {
+    function Thing(x, y) {
         // property
         let posX = x
         let posY = y
 
+        let incX = parseInt(Math.random() * 10) - 5
+        let incY = parseInt(Math.random() * 10) - 5
+
         // method
         this.draw = function () {
+            posX = posX + incX
+            posY = posY + incY
+            if (posX > screenX) {
+                posX = 0
+            }
+            if (posY > screenY) {
+                posY = 0
+            }
+            if (posX < 0) {
+                posX = screenX
+            }
+            if (posY < 0) {
+                posY = screenY
+            }
+
             p5.ellipse(posX, posY, 20, 20);
+
         }
     }
 
-    let posX = 100
-    let posY = 100
+    // let posX = 100
+    // let posY = 100
 
     let screenX = 600
     let screenY = 400
 
-    let incX = parseInt(Math.random() * 10) - 5
-    let incY = parseInt(Math.random() * 10) - 5
+
 
     // object instances
     let t1 = new Thing(30, 40)
