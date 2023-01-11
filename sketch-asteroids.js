@@ -6,8 +6,8 @@ const s = (p5) => {
     let screenX = 600
     let screenY = 400
 
-    let incX = 6
-    let incY = 4
+    let incX = parseInt(Math.random()*10) - 5
+    let incY = parseInt(Math.random()*10) - 5
 
     p5.setup = function() {
         p5.createCanvas(screenX, screenY);
