@@ -36,8 +36,40 @@ const s = (p5) => {
                 posY = screenY
             }
 
-            p5.fill(r, g, b)
+            p5.fill(color)
             p5.ellipse(posX, posY, 20, 20);
+
+        }
+    }
+
+    function Ship(x, y, r, g, b) {
+        // property
+        let posX = x
+        let posY = y
+        let color = p5.color(255, 255, 0)
+
+        let incX = 0
+        let incY = 0
+
+        // method
+        this.draw = function () {
+            posX = posX + incX
+            posY = posY + incY
+            if (posX > screenX) {
+                posX = 0
+            }
+            if (posY > screenY) {
+                posY = 0
+            }
+            if (posX < 0) {
+                posX = screenX
+            }
+            if (posY < 0) {
+                posY = screenY
+            }
+
+            p5.fill(color)
+            p5.rect(posX, posY, 20, 20);
 
         }
     }
@@ -57,7 +89,9 @@ const s = (p5) => {
     // let thingArray = [new Thing(30, 40), new Thing(120, 110), new Thing(20, 110)]
     let thingArray = []
 
-    const numThings = 10
+    let ship = new Ship(50, 50)
+
+    const numThings = 5
 
     for (let i = 0; i < numThings; i++) {
         let r = randomColor()
@@ -77,6 +111,8 @@ const s = (p5) => {
             const thing = thingArray[i];
             thing.draw()
         }
+
+        ship.draw()
 
         // t1.draw()
         // t2.draw()
