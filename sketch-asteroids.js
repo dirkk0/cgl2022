@@ -12,8 +12,8 @@ const s = (p5) => {
     // object definition
     function Thing(x, y, r, g, b) {
         // property
-        let posX = x
-        let posY = y
+        this.posX = x
+        this.posY = y
         let color = p5.color(r, g, b)
 
         let incX = randomInt(5)
@@ -21,31 +21,31 @@ const s = (p5) => {
 
         // method
         this.draw = function () {
-            posX = posX + incX
-            posY = posY + incY
-            if (posX > screenX) {
-                posX = 0
+            this.posX = this.posX + incX
+            this.posY = this.posY + incY
+            if (this.posX > screenX) {
+                this.posX = 0
             }
-            if (posY > screenY) {
-                posY = 0
+            if (this.posY > screenY) {
+                this.posY = 0
             }
-            if (posX < 0) {
-                posX = screenX
+            if (this.posX < 0) {
+                this.posX = screenX
             }
-            if (posY < 0) {
-                posY = screenY
+            if (this.posY < 0) {
+                this.posY = screenY
             }
 
             p5.fill(color)
-            p5.ellipse(posX, posY, 20, 20);
+            p5.ellipse(this.posX, this.posY, 20, 20);
 
         }
     }
 
     function Ship(x, y, r, g, b) {
         // property
-        let posX = x
-        let posY = y
+        this.posX = x
+        this.posY = y
         let color = p5.color(255, 255, 0)
 
         this.incX = 0
@@ -53,23 +53,23 @@ const s = (p5) => {
 
         // method
         this.draw = function () {
-            posX = posX + this.incX
-            posY = posY + this.incY
-            if (posX > screenX) {
-                posX = 0
+            this.posX = this.posX + this.incX
+            this.posY = this.posY + this.incY
+            if (this.posX > screenX) {
+                this.posX = 0
             }
-            if (posY > screenY) {
-                posY = 0
+            if (this.posY > screenY) {
+                this.posY = 0
             }
-            if (posX < 0) {
-                posX = screenX
+            if (this.posX < 0) {
+                this.posX = screenX
             }
-            if (posY < 0) {
-                posY = screenY
+            if (this.posY < 0) {
+                this.posY = screenY
             }
 
             p5.fill(color)
-            p5.rect(posX, posY, 20, 20);
+            p5.rect(this.posX, this.posY, 20, 20);
             // console.log(this.incX)
         }
 
@@ -134,6 +134,14 @@ const s = (p5) => {
         }
 
         ship.draw()
+
+        // collision
+        for (let i = 0; i < thingArray.length; i++) {
+            const thing = thingArray[i];
+            if (thing.posX == ship.posX && thing.posY == ship.posY) {
+                console.log("collide")
+            }
+        }
     }
 
     p5.keyPressed = function () {
