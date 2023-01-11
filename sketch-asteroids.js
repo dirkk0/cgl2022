@@ -1,11 +1,13 @@
 
 const s = (p5) => {
 
-
+    // object definition
     function Thing(x,y) {
+        // property
         let posX = x
         let posY = y
 
+        // method
         this.draw = function () {
             p5.ellipse(posX, posY, 20, 20);
         }
@@ -20,6 +22,7 @@ const s = (p5) => {
     let incX = parseInt(Math.random() * 10) - 5
     let incY = parseInt(Math.random() * 10) - 5
 
+    // object instances
     let t1 = new Thing(30, 40)
     let t2 = new Thing(120, 110)
 
