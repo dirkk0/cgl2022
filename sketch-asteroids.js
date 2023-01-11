@@ -48,13 +48,13 @@ const s = (p5) => {
         let posY = y
         let color = p5.color(255, 255, 0)
 
-        let incX = 0
-        let incY = 0
+        this.incX = 0
+        this.incY = 0
 
         // method
         this.draw = function () {
-            posX = posX + incX
-            posY = posY + incY
+            posX = posX + this.incX
+            posY = posY + this.incY
             if (posX > screenX) {
                 posX = 0
             }
@@ -70,7 +70,28 @@ const s = (p5) => {
 
             p5.fill(color)
             p5.rect(posX, posY, 20, 20);
+            // console.log(this.incX)
+        }
 
+        this.accX = function (a) {
+            console.log(this.incX, a)
+            this.incX = this.incX + a
+            if (this.incX > 5) {
+                this.incX = 5
+            }
+            if (this.incX < -5) {
+                this.incX = -5
+            }
+            console.log(this.incX)
+        }
+        this.accY = function (a) {
+            this.incY = this.incY + a
+            if (this.incY > 5) {
+                this.incY = 5
+            }
+            if (this.incY < -5) {
+                this.incY = -5
+            }
         }
     }
 
@@ -113,26 +134,21 @@ const s = (p5) => {
         }
 
         ship.draw()
+    }
 
-        // t1.draw()
-        // t2.draw()
-
-        // posX = posX + incX
-        // posY = posY + incY
-        // if (posX > screenX) {
-        //     posX = 0
-        // }
-        // if (posY > screenY) {
-        //     posY = 0
-        // }
-        // if (posX < 0) {
-        //     posX = screenX
-        // }
-        // if (posY < 0) {
-        //     posY = screenY
-        // }
-
-        // p5.ellipse(posX, posY, 20, 20);
+    p5.keyPressed = function () {
+        if (p5.keyCode === p5.LEFT_ARROW) {
+            ship.accX(-1)
+        }
+        if (p5.keyCode === p5.RIGHT_ARROW) {
+            ship.accX(+1)
+        }
+        if (p5.keyCode === p5.UP_ARROW) {
+            ship.accY(-1)
+        }
+        if (p5.keyCode === p5.DOWN_ARROW) {
+            ship.accY(+1)
+        }
     }
 }
 new p5(s); // invoke p5, don't invoke 'automagically' !!!!!!
