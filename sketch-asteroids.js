@@ -6,8 +6,8 @@ const s = (p5) => {
     let screenX = 600
     let screenY = 400
 
-    let incX = -3
-    let incY = 2
+    let incX = 6
+    let incY = 4
 
     p5.setup = function() {
         p5.createCanvas(screenX, screenY);
@@ -21,10 +21,10 @@ const s = (p5) => {
         if (posY > screenY) {
             posY = 0
         }
-        if (posX <= 0) {
+        if (posX < 0) {
             posX = screenX
         }
-        if (posY <= 0) {
+        if (posY < 0) {
             posY = screenY
         }
 
