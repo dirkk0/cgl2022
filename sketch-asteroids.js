@@ -1,15 +1,20 @@
 
 const s = (p5) => {
 
-    function randomInt (n) {
+    function randomInt(n) {
         return parseInt(Math.random() * n * 2) - n
     }
 
+    function randomColor(n) {
+        return parseInt(Math.random() * 255)
+    }
+
     // object definition
-    function Thing(x, y) {
+    function Thing(x, y, r, g, b) {
         // property
         let posX = x
         let posY = y
+        let color = p5.color(r, g, b)
 
         let incX = randomInt(5)
         let incY = randomInt(5)
@@ -31,6 +36,7 @@ const s = (p5) => {
                 posY = screenY
             }
 
+            p5.fill(r, g, b)
             p5.ellipse(posX, posY, 20, 20);
 
         }
@@ -54,7 +60,10 @@ const s = (p5) => {
     const numThings = 10
 
     for (let i = 0; i < numThings; i++) {
-        const thing = new Thing(randomInt(50), randomInt(50))
+        let r = randomColor()
+        let g = randomColor()
+        let b = randomColor()
+        const thing = new Thing(randomInt(50), randomInt(50), r, g, b)
         thingArray.push(thing)
     }
 
@@ -62,7 +71,7 @@ const s = (p5) => {
         p5.createCanvas(screenX, screenY);
     }
     p5.draw = function () {
-        p5.background(80)
+        p5.background(220)
 
         for (let i = 0; i < thingArray.length; i++) {
             const thing = thingArray[i];
