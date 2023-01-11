@@ -1,14 +1,18 @@
 
 const s = (p5) => {
 
+    function randomInt (n) {
+        return parseInt(Math.random() * n * 2) - n
+    }
+
     // object definition
     function Thing(x, y) {
         // property
         let posX = x
         let posY = y
 
-        let incX = parseInt(Math.random() * 10) - 5
-        let incY = parseInt(Math.random() * 10) - 5
+        let incX = randomInt(5)
+        let incY = randomInt(5)
 
         // method
         this.draw = function () {
@@ -47,10 +51,10 @@ const s = (p5) => {
     // let thingArray = [new Thing(30, 40), new Thing(120, 110), new Thing(20, 110)]
     let thingArray = []
 
-    const numThings = 50
+    const numThings = 10
 
     for (let i = 0; i < numThings; i++) {
-        const thing = new Thing(30, 30)
+        const thing = new Thing(randomInt(50), randomInt(50))
         thingArray.push(thing)
     }
 
