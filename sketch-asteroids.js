@@ -41,8 +41,18 @@ const s = (p5) => {
 
 
     // object instances
-    let t1 = new Thing(30, 40)
-    let t2 = new Thing(120, 110)
+    // let t1 = new Thing(30, 40)
+    // let t2 = new Thing(120, 110)
+
+    // let thingArray = [new Thing(30, 40), new Thing(120, 110), new Thing(20, 110)]
+    let thingArray = []
+
+    const numThings = 50
+
+    for (let i = 0; i < numThings; i++) {
+        const thing = new Thing(30, 30)
+        thingArray.push(thing)
+    }
 
     p5.setup = function () {
         p5.createCanvas(screenX, screenY);
@@ -50,8 +60,13 @@ const s = (p5) => {
     p5.draw = function () {
         p5.background(80)
 
-        t1.draw()
-        t2.draw()
+        for (let i = 0; i < thingArray.length; i++) {
+            const thing = thingArray[i];
+            thing.draw()
+        }
+
+        // t1.draw()
+        // t2.draw()
 
         // posX = posX + incX
         // posY = posY + incY
